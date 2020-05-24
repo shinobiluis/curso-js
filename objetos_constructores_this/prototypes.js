@@ -1,3 +1,4 @@
+// https://www.udemy.com/course/javascript-moderno-guia-definitiva-construye-10-proyectos/learn/lecture/9079558#notes
 function Cliente(nombre, saldo){
     this.nombre = nombre;
     this.saldo = saldo;
