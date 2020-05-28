@@ -7,6 +7,22 @@ function Seguro(marca, anio, tipo){
 
 // Todo lo que se meustra
 function Interfaz(){}
+// mensaje que se imprime en el html
+Interfaz.prototype.mostrarEror = function(mensaje, tipo){
+    const div = document.createElement('div');
+    if (tipo === 'error') {
+        div.classList.add('mensaje', 'error');
+    }else{
+        div.classList.add('mensaje', 'correcto');
+    }
+    div.innerHTML = `${mensaje}`;
+    // añadimos el div antes del div con clase .form-group
+    formulario.insertBefore(div, document.querySelector('.form-group'));
+    setTimeout(function(){
+        document.querySelector('.mensaje').remove()
+    }, 3000)
+
+}
 
 // EventListener
 const formulario = document.getElementById('cotizar-seguro')
@@ -32,6 +48,7 @@ formulario.addEventListener('submit', function(e){
     if (marcaSeleccionada === '' || anioSeleccionado === '' || tipo === '') {
         // Interfaz inprimiendo un error
         console.log("Faltan Datos");
+        interfaz.mostrarEror('Faltan datos, revisar el formulario', 'error');
     }else{
         // instanciar seguro y mostrar interfaz
         console.log("Todo correcto");
