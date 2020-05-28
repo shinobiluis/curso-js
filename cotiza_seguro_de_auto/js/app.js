@@ -22,6 +22,10 @@ formulario.addEventListener('submit', function(e){
     const anioSeleccionado = anio.options[anio.selectedIndex].value;
     const anioSeleccionadoText = anio.options[anio.selectedIndex].textContent;
     console.log(`año', value: ${anioSeleccionado}, text: ${anioSeleccionadoText}`)
+    // leer el valor del radio button
+    const tipo = document.querySelector('input[name="tipo"]:checked').value;
+    console.log(tipo);
+    
     
 })
 
