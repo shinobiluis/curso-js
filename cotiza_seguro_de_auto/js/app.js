@@ -12,10 +12,17 @@ function Interfas(){}
 const formulario = document.getElementById('cotizar-seguro')
 formulario.addEventListener('submit', function(e){
     e.preventDefault();
+    // leer la marca seleccionada del select
     const marca = document.getElementById('marca');
     const marcaSeleccionada = marca.options[marca.selectedIndex].value;
     const marcaSeleccionadaText = marca.options[marca.selectedIndex].textContent;
-    console.log('Presionado', marcaSeleccionada, marcaSeleccionadaText)
+    console.log(`marca, value: ${marcaSeleccionada}, text: ${marcaSeleccionadaText}`)
+    // leer el año seleccionado del select
+    const anio = document.getElementById('anio');
+    const anioSeleccionado = anio.options[anio.selectedIndex].value;
+    const anioSeleccionadoText = anio.options[anio.selectedIndex].textContent;
+    console.log(`año', value: ${anioSeleccionado}, text: ${anioSeleccionadoText}`)
+    
 })
 
 // creamos el select con el listado de años
