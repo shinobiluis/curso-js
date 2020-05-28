@@ -6,7 +6,7 @@ function Seguro(marca, anio, tipo){
 }
 
 // Todo lo que se meustra
-function Interfas(){}
+function Interfaz(){}
 
 // EventListener
 const formulario = document.getElementById('cotizar-seguro')
@@ -25,8 +25,17 @@ formulario.addEventListener('submit', function(e){
     // leer el valor del radio button
     const tipo = document.querySelector('input[name="tipo"]:checked').value;
     console.log(tipo);
-    
-    
+    // crear instancia de interfaz(esta en la linea 9)
+    const interfaz = new Interfaz();
+
+    // revisamos que los campos no esten vacios
+    if (marcaSeleccionada === '' || anioSeleccionado === '' || tipo === '') {
+        // Interfaz inprimiendo un error
+        console.log("Faltan Datos");
+    }else{
+        // instanciar seguro y mostrar interfaz
+        console.log("Todo correcto");
+    }
 })
 
 // creamos el select con el listado de años
