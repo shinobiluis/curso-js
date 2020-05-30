@@ -44,7 +44,7 @@ Seguro.prototype.cotizarSeguro = function(){
 // Todo lo que se meustra
 function Interfaz(){}
 // mensaje que se imprime en el html
-Interfaz.prototype.mostrarEror = function(mensaje, tipo){
+Interfaz.prototype.mostrarMensaje = function(mensaje, tipo){
     const div = document.createElement('div');
     if (tipo === 'error') {
         div.classList.add('mensaje', 'error');
@@ -78,13 +78,18 @@ Interfaz.prototype.mostrarResultado = function(seguro, total){
     console.log(`La marcar seleccionada es: ${marca}`)
     const div = document.createElement('div');
     div.innerHTML = `
-        <p>Tu Resumen:</p>
+        <p class="header">Tu Resumen:</p>
         <p>Marca: ${marca}</p>
         <p>Año: ${seguro.anio}</p>
         <p>Tipo: ${seguro.tipo}</p>
         <p>total: ${total}</p>
     `;
-    resultado.appendChild(div);
+    const spinner = document.querySelector('#cargando img');
+    spinner.style.display ="block";
+    setTimeout(function(){
+        spinner.style.display ="none";
+        resultado.appendChild(div);
+    }, 3000)
 
 }
 
@@ -112,8 +117,13 @@ formulario.addEventListener('submit', function(e){
     if (marcaSeleccionada === '' || anioSeleccionado === '' || tipo === '') {
         // Interfaz inprimiendo un error
         console.log("Faltan Datos");
-        interfaz.mostrarEror('Faltan datos, revisar el formulario', 'error');
+        interfaz.mostrarMensaje('Faltan datos, revisar el formulario', 'error');
     }else{
+        // Limpiar resultados anteriores
+        const resultados = document.querySelector('#resultado div')
+        if (resultados != null) {
+            resultados.remove();
+        }
         // instanciar seguro y mostrar interfaz
         console.log("Todo correcto");
         const seguro = new Seguro(marcaSeleccionada, anioSeleccionado, tipo)
@@ -121,6 +131,7 @@ formulario.addEventListener('submit', function(e){
         const cantidad = seguro.cotizarSeguro();
         // Mostrar el resultado
         interfaz.mostrarResultado(seguro, cantidad);
+        interfaz.mostrarMensaje('Cotizando...', 'correcto');
     }
 })
 
