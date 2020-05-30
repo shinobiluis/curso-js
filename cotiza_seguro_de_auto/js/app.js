@@ -38,7 +38,7 @@ Seguro.prototype.cotizarSeguro = function(){
     } else {
         cantidad *= 1.50;
     }
-    console.log(cantidad);
+    return cantidad;
 }
 
 // Todo lo que se meustra
@@ -90,7 +90,7 @@ formulario.addEventListener('submit', function(e){
         console.log("Todo correcto");
         const seguro = new Seguro(marcaSeleccionada, anioSeleccionado, tipo)
         // Cotizar el seguro
-        const cantidad = seguro.cotizarSeguro()
+        const cantidad = seguro.cotizarSeguro();
     }
 })
 
