@@ -64,6 +64,23 @@ class Interfaz {
         // leemos el presupuesto restante
         const presupuestoRestanteUsuario = cantidadPresupuesto.presupuestoRestante(cantidad)
         restante.innerHTML=`${presupuestoRestanteUsuario}`;
+        this.comprobarPresupuesto();
+    }
+    // cambia de color el presupuesto restante
+    comprobarPresupuesto(){
+        const presupuestoTotal = cantidadPresupuesto.presupuesto;
+        const presupuestoRestante = cantidadPresupuesto.restante;
+        // comprobar el 25% del gasto
+        if (presupuestoTotal / 4 > presupuestoRestante) {
+            const restante = document.querySelector('.restante');
+            restante.classList.remove('alert-success', 'alert-warning');
+            restante.classList.add('alert-danger');
+        } else if(presupuestoTotal / 2 > presupuestoRestante) {
+            // comprobar el 50% del gasto
+            const restante = document.querySelector('.restante');
+            restante.classList.remove('alert-success');
+            restante.classList.add('alert-warning');
+        }
     }
 }
 
