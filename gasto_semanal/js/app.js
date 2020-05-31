@@ -1,5 +1,5 @@
 // variables
-const presupuestoUsuario = prompt('Cual es tu presupuerso semanal?');
+const presupuestoUsuario = prompt('Cual es tu Presupuesto semanal?');
 let cantidadPresupuesto;
 
 // Clases
@@ -16,6 +16,17 @@ class Presupuesto{
     }
 
 }
+// Clase de Interfaz maneja todo lo relacionado a el HTML
+class Interfaz {
+    insertarPresupuesto(cantidad){
+        console.log(cantidad)
+        const presupuestoSpan = document.querySelector('span#total');
+        const restanteSapan = document.querySelector('span#restante');
+        // Insertar al HTML
+        presupuestoSpan.innerHTML = `${cantidad}`
+        restanteSapan.innerHTML = `${cantidad}`
+    }
+}
 
 
 // Event Listeners
@@ -29,5 +40,8 @@ document.addEventListener('DOMContentLoaded', function(){
         // instanciamos la clase Presupuesto
         cantidadPresupuesto = new Presupuesto(presupuestoUsuario);
         console.log(cantidadPresupuesto);
+        // instanciamos la clase de Interfaz
+        const ui = new Interfaz();
+        ui.insertarPresupuesto(cantidadPresupuesto.presupuesto);
     }
 })
