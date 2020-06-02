@@ -39,6 +39,11 @@ class Interfaz {
 
     // Imprime el resultado de la cotización
     mostrarResultado(resultado, moneda, crypto){
+        // en caso de un resultado anterior, ocultarlo
+        const resultadoAnterior = document.querySelector('#resultado > div');
+        if (resultadoAnterior) {
+            resultadoAnterior.remove();
+        }
         console.log(resultado[crypto][moneda])
         const datosMoneda = resultado[crypto][moneda];
         // recortar digitos del precio
@@ -56,7 +61,18 @@ class Interfaz {
                 </div>
             </div>
         `;
-        // Insertar el resultado
-        document.querySelector('#resultado').innerHTML = templateHTML;
+        this.mostrarOcultarSpiner('block');
+        setInterval(() => {
+            // insertar el resultado
+            document.querySelector('#resultado').innerHTML = templateHTML;
+            // ocultar el spiner
+            this.mostrarOcultarSpiner('none');
+        }, 3000);
+    }
+
+    // mostrar spiner
+    mostrarOcultarSpiner(vista){
+        const spiner = document.querySelector('.contenido-spinner');
+        spiner.style.display = vista;
     }
 }
