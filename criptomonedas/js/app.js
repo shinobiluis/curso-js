@@ -1,5 +1,5 @@
+const cotizador = new API('c1cac595722e2833514385b43344b1fceaa8f5323afa829761f0aa620c7ba15a');
 const ui = new Interfaz();
-
 
 
 // Leer el formularios
