@@ -26,4 +26,24 @@ class Interfaz {
                 })
             })
     }
+    // metodo para imprimir mensajes: 2 parametros menaje y claeses
+    mosstrarMensaje(mesnaje, clases) {
+        const div = document.createElement('div');
+        div.classList = clases;
+        // agregar texto
+        div.appendChild(document.createTextNode(mesnaje));
+        // buscar un padre
+        const buscadorDiv = document.querySelector('#buscador');
+        buscadorDiv.appendChild(div);
+        setTimeout(()=>{
+            this.limpiarMensaje();
+        },3000)
+    }
+    // desaparece el mensaje en caso de que exista
+    limpiarMensaje(){
+        const alert = document.querySelector('.alert');
+        if(alert){
+            alert.remove();
+        }
+    }
 }

@@ -17,5 +17,6 @@ document.getElementById('buscarBtn').addEventListener('click', (e) => {
         console.log('buscando');
     }else{
         console.log('no hay nada')
+        ui.mosstrarMensaje('Escribe algo en el buscador', 'alert alert-danger mt-4')
     }
 })
