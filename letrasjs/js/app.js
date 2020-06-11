@@ -19,7 +19,20 @@ UI.formularioBuscar.addEventListener('submit', (e) => {
         const api = new API(cancion, artisa);
         api.consultarAPI()
             .then(data =>{
-                console.log(data);
+                if (data.respuesta.lyrics) {
+                    // La cancion existe
+                    const letra = data.respuesta.lyrics;
+                    UI.divResultado.textContent = letra;
+                }else{
+                    // La cancion no existe
+                    UI.divMensajes.innerHTML = 'La cancion no existe...'
+                    UI.divMensajes.classList.add('error');
+                    setTimeout(()=>{
+                        UI.divMensajes.innerHTML = ''
+                        UI.divMensajes.classList.remove('error');
+                        UI.formularioBuscar.reset();
+                    },3000)
+                }
             })
     }
 })
