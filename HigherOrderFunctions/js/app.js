@@ -125,14 +125,20 @@ const autos = [
 ];
 
 // forEach
-let resultado = [];
-autos.forEach(auto => {
-	if(auto.color === 'Rojo'){
-		resultado.push(auto)
-	}
-});
-console.log(resultado);
+// let resultado = [];
+// autos.forEach(auto => {
+// 	if(auto.color === 'Rojo'){
+// 		resultado.push(auto)
+// 	}
+// });
+// console.log(resultado);
+
 // map
+// Map se puede guardar y genera un arreglo
+let resultado = autos.map(auto => {
+	return auto;
+})
+console.log(resultado);
 
 // filter
 
