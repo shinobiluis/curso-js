@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         transaction.oncomplete = () => {
             console.log('Cita agregada');
+            mostrarCitas();
         }
         transaction.onerror = () => {
             console.log('un error');
