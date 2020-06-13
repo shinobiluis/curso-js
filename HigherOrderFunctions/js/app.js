@@ -145,12 +145,13 @@ const autos = [
 // let resultado = autos.filter(auto => {
 // 	return auto.marca === 'BMW';
 // });
-
-let resultado = autos.filter(auto => auto.year >= 2016 && auto.marca === 'BMW');
-
-console.log(resultado)
+// let resultado = autos.filter(auto => auto.year >= 2016 && auto.marca === 'BMW');
+// console.log(resultado)
 
 // find
+// Find retorna el primer elemento que encuentre en el arreglo
+let resultado = autos.find(auto => auto.marca === 'BMW');
+console.log(resultado);
 
 // reduce
 
