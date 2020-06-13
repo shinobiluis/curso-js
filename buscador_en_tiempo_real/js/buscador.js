@@ -208,14 +208,10 @@ color.addEventListener('input', e => {
 })
 
 function mostrarAutos(autos){
+    limpiarHTML();
     // leer el elemento
     const contenedor = document.querySelector('#resultado');
-
-    // limpiar los resultados anteriores
-    while(contenedor.firstChild){
-        contenedor.removeChild(contenedor.firstChild);
-    }
-
+    
     autos.forEach(auto => {
         const autoHtml = document.createElement('p');
         autoHtml.innerHTML = `
@@ -223,6 +219,22 @@ function mostrarAutos(autos){
         `;
         contenedor.appendChild(autoHtml);
     })
+}
+function limpiarHTML(){
+    // leer el elemento
+    const contenedor = document.querySelector('#resultado');
+    // limpiar los resultados anteriores
+    while(contenedor.firstChild){
+        contenedor.removeChild(contenedor.firstChild);
+    }
+}
+
+function noResultados(){
+    limpiarHTML();
+    const noResultado = document.createElement('div');
+    noResultado.classList.add('alerta', 'error')
+    noResultado.appendChild(document.createTextNode('No hay resultados'));
+    document.querySelector('#resultado').appendChild(noResultado);
 }
 
 function filtrarAuto(){
@@ -232,7 +244,7 @@ function filtrarAuto(){
     if (resultado.length) {
         mostrarAutos(resultado)
     }else{
-        alert('no hay resultados');
+        noResultados();
     }
 }
 
