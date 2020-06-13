@@ -37,6 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let objectstore = db.createObjectStore('citas', { keypath: 'key', autoIncrement: true });
         // crear los indecies y campos de la bd, createIndex : 3 parametros, nombre, kaypath y opciones
         objectstore.createIndex('mascota', 'mascota', { unique : false })
+        objectstore.createIndex('cliente', 'cliente', { unique : false })
+        objectstore.createIndex('telefono', 'telefono', { unique : false })
+        objectstore.createIndex('fecha', 'fecha', { unique : false })
+        objectstore.createIndex('hora', 'hora', { unique : false })
+        objectstore.createIndex('sintomas', 'sintomas', { unique : false })
+        console.log("Base de datos creada y lista")
 
     }
 })
