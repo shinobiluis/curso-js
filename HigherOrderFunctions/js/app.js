@@ -135,12 +135,20 @@ const autos = [
 
 // map
 // Map se puede guardar y genera un arreglo
-let resultado = autos.map(auto => {
-	return auto;
-})
-console.log(resultado);
+// let resultado = autos.map(auto => {
+// 	return auto;
+// })
+// console.log(resultado);
 
 // filter
+// Genera un arreglo basado en una prueba que es avaluada
+// let resultado = autos.filter(auto => {
+// 	return auto.marca === 'BMW';
+// });
+
+let resultado = autos.filter(auto => auto.year >= 2016 && auto.marca === 'BMW');
+
+console.log(resultado)
 
 // find
 
