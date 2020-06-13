@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Asignar a la base de datos
         DB = crearDB.result;
         // console.log(DB)
+        mostrarCitas();
     }
 
     // este metodo solo corre una vez y es ideal para crear el schema de la base de datos
@@ -74,6 +75,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         transaction.onerror = () => {
             console.log('un error');
+        }
+    }
+
+    function mostrarCitas(){
+        // Limpiar las citas anteriores
+        // mientras citas tenga hijos
+        while (citas.firstChild) {
+            citas.removeChild(citas.firstChild);
+        }
+        // creamos un objectstore
+        let objectStore = DB.transaction('citas').objectStore('citas');
+        // esto retorna una peticion
+        objectStore.openCursor().onsuccess = function(e){
+            // cursos se va a ubicar en el registro indicado para acceder a los datos
+            let cursor = e.target.result;
+            // console.log(cursor)
+            if (cursor) {
+                let citaHTML = document.createElement('li');
+                citaHTML.setAttribute('data-cita-id', cursor.value.key)
+                citaHTML.classList.add('list-group-item');
+                citaHTML.innerHTML = `
+                    <p class="font-weight-bold">Mascota: <span class="font-weight-normal">${cursor.value.mascota}</span></p>
+                    <p class="font-weight-bold">Cliente: <span class="font-weight-normal">${cursor.value.cliente}</span></p>
+                    <p class="font-weight-bold">telefono: <span class="font-weight-normal">${cursor.value.telefono}</span></p>
+                    <p class="font-weight-bold">fecha: <span class="font-weight-normal">${cursor.value.fecha}</span></p>
+                    <p class="font-weight-bold">hora: <span class="font-weight-normal">${cursor.value.hora}</span></p>
+                    <p class="font-weight-bold">sintomas: <span class="font-weight-normal">${cursor.value.sintomas}</span></p>
+                `;
+                // append al padre
+                citas.appendChild(citaHTML);
+                cursor.continue();
+            } else {
+                
+            }
         }
     }
 })
