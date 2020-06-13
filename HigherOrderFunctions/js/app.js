@@ -155,14 +155,17 @@ const autos = [
 
 // reduce
 // toma todos los valores y retorna un valor unico
-let resultado = autos.reduce( ( total, auto ) => total + auto.precio, 0 );
-console.log(resultado);
+// let resultado = autos.reduce( ( total, auto ) => total + auto.precio, 0 );
+// console.log(resultado);
 
-const numeros = [1,2,3];
-let resultado1 = numeros.reduce( ( total, numero ) => total + numero, 0 );
-console.log(resultado1);
+// const numeros = [1,2,3];
+// let resultado1 = numeros.reduce( ( total, numero ) => total + numero, 0 );
+// console.log(resultado1);
 
 
 // some
+// evalua una condicion y solo retorna true o false
+let resultado = autos.some( auto => auto.marca === 'BMW' );
+console.log(resultado);
 
 
