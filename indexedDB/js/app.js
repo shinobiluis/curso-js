@@ -3,7 +3,7 @@ let DB;
 // Selectores de la interfaz
 const form = document.querySelector('form'),
     nombreMascota = document.querySelector('#mascota'),
-    nombreCliente = document.querySelector('#clinete'),
+    nombreCliente = document.querySelector('#cliente'),
     telefono = document.querySelector('#telefono'),
     fecha = document.querySelector('#fecha'),
     hora = document.querySelector('#hora'),
@@ -44,5 +44,21 @@ document.addEventListener('DOMContentLoaded', () => {
         objectstore.createIndex('sintomas', 'sintomas', { unique : false })
         console.log("Base de datos creada y lista")
 
+    }
+    
+    // cuanod el formulario se envia
+    form.addEventListener('submit', agregarDatos);
+    // 
+    function agregarDatos(e){
+        e.preventDefault();
+        const nuevaCita = {
+            mascota : nombreMascota.value,
+            cliente : nombreCliente.value,
+            telefono : telefono.value,
+            fecha : fecha.value,
+            hora : hora.value,
+            sintomas : sintomas.value
+        }
+        console.log(nuevaCita)
     }
 })
