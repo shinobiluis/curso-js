@@ -149,11 +149,19 @@ const autos = [
 // console.log(resultado)
 
 // find
-// Find retorna el primer elemento que encuentre en el arreglo
-let resultado = autos.find(auto => auto.marca === 'BMW');
-console.log(resultado);
+// Find retorna el primer elemento que encuentre en el arreglo, cumpliendo una condicion
+// let resultado = autos.find(auto => auto.marca === 'BMW');
+// console.log(resultado);
 
 // reduce
+// toma todos los valores y retorna un valor unico
+let resultado = autos.reduce( ( total, auto ) => total + auto.precio, 0 );
+console.log(resultado);
+
+const numeros = [1,2,3];
+let resultado1 = numeros.reduce( ( total, numero ) => total + numero, 0 );
+console.log(resultado1);
+
 
 // some
 
