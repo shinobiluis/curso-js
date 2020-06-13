@@ -60,5 +60,20 @@ document.addEventListener('DOMContentLoaded', () => {
             sintomas : sintomas.value
         }
         console.log(nuevaCita)
+        // En IndexdDB se utilizan las transascciones
+        let transaction = DB.transaction(['citas'], 'readwrite');
+        let objectStore = transaction.objectStore('citas');
+        // console.log(objectStore)
+        let peticion = objectStore.add(nuevaCita);
+        console.log(peticion);
+        peticion.onsuccess = () =>{
+            form.reset();
+        }
+        transaction.oncomplete = () => {
+            console.log('Cita agregada');
+        }
+        transaction.onerror = () => {
+            console.log('un error');
+        }
     }
 })
