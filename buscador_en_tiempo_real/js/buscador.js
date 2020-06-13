@@ -161,7 +161,13 @@ const marca = document.querySelector('#marca');
 marca.addEventListener('input', e => {
     console.log(e.target.value);
     datosBusqueda.marca = e.target.value;
-    
+    // mandar llamar la funcion de filtar autos
+    filtrarAuto();
+})
+const year = document.querySelector('#year');
+year.addEventListener('input', e => {
+    console.log(e.target.value);
+    datosBusqueda.year = Number(e.target.value);
     // mandar llamar la funcion de filtar autos
     filtrarAuto();
 })
@@ -169,6 +175,12 @@ marca.addEventListener('input', e => {
 function mostrarAutos(autos){
     // leer el elemento
     const contenedor = document.querySelector('#resultado');
+
+    // limpiar los resultados anteriores
+    while(contenedor.firstChild){
+        contenedor.removeChild(contenedor.firstChild);
+    }
+
     autos.forEach(auto => {
         const autoHtml = document.createElement('p');
         autoHtml.innerHTML = `
@@ -180,14 +192,27 @@ function mostrarAutos(autos){
 
 function filtrarAuto(){
     console.log("filtrar autos")
-    const resultado = obtenerAutos().filter(filtrarMarcar);
+    const resultado = obtenerAutos().filter(filtrarMarcar).filter(filtrarYear);
     console.log(resultado);
+    if (resultado.length) {
+        mostrarAutos(resultado)
+    }else{
+        alert('no hay resultados');
+    }
 }
 
 function filtrarMarcar(auto){
     if(datosBusqueda.marca){
         return auto.marca === datosBusqueda.marca;
     }else{
+        return auto;
+    }
+}
 
+function filtrarYear(auto){
+    if(datosBusqueda.year){
+        return auto.year === datosBusqueda.year;
+    }else{
+        return auto;
     }
 }
