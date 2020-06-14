@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // console.log(cursor)
             if (cursor) {
                 let citaHTML = document.createElement('li');
-                citaHTML.setAttribute('data-cita-id', cursor.value.key)
+                citaHTML.setAttribute('data-cita-id', cursor.key)
                 citaHTML.classList.add('list-group-item');
                 citaHTML.innerHTML = `
                     <p class="font-weight-bold">Mascota: <span class="font-weight-normal">${cursor.value.mascota}</span></p>
@@ -104,6 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="font-weight-bold">hora: <span class="font-weight-normal">${cursor.value.hora}</span></p>
                     <p class="font-weight-bold">sintomas: <span class="font-weight-normal">${cursor.value.sintomas}</span></p>
                 `;
+                // boton de borrar
+                const botonBorrar = document.createElement('button');
+                botonBorrar.classList.add('borrar', 'btn', 'btn-danger');
+                botonBorrar.innerHTML = `<span arial-hidden="true">x</span>Borrar`;
+                botonBorrar.onclick = borrarCita;
+                citaHTML.appendChild(botonBorrar);
                 // append al padre
                 citas.appendChild(citaHTML);
                 // consultar los isguientes registros
@@ -121,5 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+    }
+
+    function borrarCita(e){
+        console.log(e.target.parentElement.getAttribute('data-cita-id'));
     }
 })
